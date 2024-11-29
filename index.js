@@ -1,5 +1,5 @@
 (async () => {
     const database = require('./db');
-    const Produto = require('./produto');
+    const Produtos = require('./produtos');
     await database.sync();
 })();

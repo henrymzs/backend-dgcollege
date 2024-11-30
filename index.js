@@ -4,5 +4,6 @@
     const tabelaUsuarios = require('./tabelaUsuarios');
     const tabelaCategorias = require('./tabelaCategorias');
     const opcoesProdutos = require('./opcoesProdutos');
+    const imagensProdutos = require('./imagensProduto');
     await database.sync();
 })();

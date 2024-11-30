@@ -1,9 +1,9 @@
 (async () => {
-    const database = require('./db');
-    const Produtos = require('./produtos');
-    const tabelaUsuarios = require('./tabelaUsuarios');
-    const tabelaCategorias = require('./tabelaCategorias');
-    const opcoesProdutos = require('./opcoesProdutos');
-    const imagensProdutos = require('./imagensProduto');
+    const database = require('./src/config/db');
+    const Produtos = require('./src/models/produtos');
+    const tabelaUsuarios = require('./src/models/tabelaUsuarios');
+    const tabelaCategorias = require('./src/models/tabelaCategorias');
+    const opcoesProdutos = require('./src/models/opcoesProdutos');
+    const imagensProdutos = require('./src/models/imagensProduto');
     await database.sync();
 })();

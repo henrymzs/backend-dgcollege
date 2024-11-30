@@ -1,4 +1,4 @@
-const sequelize = require('./db')
+const sequelize = require('../config/db')
 const { DataTypes } = require('sequelize')
 const Produtos = require('./produtos');
 const { FOREIGNKEYS } = require('sequelize/lib/query-types');

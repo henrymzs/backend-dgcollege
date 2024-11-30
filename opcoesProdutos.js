@@ -55,3 +55,5 @@ const OpcoesProduto = sequelize.define('opcoesProduto', {
 
 OpcoesProduto.belongsTo(Produtos, { as: 'produto', FOREIGNKEYS: 'produtos_id'});
 Produtos.hasMany(OpcoesProduto, { as: 'opcoesProdutos', FOREIGNKEYS: 'produtos_id'});
+
+module.exports = OpcoesProduto;

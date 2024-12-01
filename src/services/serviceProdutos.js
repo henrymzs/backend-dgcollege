@@ -1,8 +1,8 @@
 const { Op } = require('sequelize');
-const app = require("./app");
-const tabelaProdutos = require('./src/models/tabelasProdutos');
-const imagensProduto = require('./src/models/imagensProduto');
-const opcoesProduto = require('./src/models/opcoesProduto');
+const app = require("../../app");
+const tabelaProdutos = require('../models/tabelasProdutos');
+const imagensProduto = require('../models/imagensProduto');
+const opcoesProduto = require('../models/opcoesProdutos');
 
 const getProduct = async (req, res) => {
     try {

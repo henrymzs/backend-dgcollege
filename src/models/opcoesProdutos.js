@@ -1,6 +1,6 @@
 const sequelize = require('../config/db')
 const { DataTypes } = require('sequelize')
-const Produtos = require('./produtos');
+const Produtos = require('./tabelasProdutos');
 const { FOREIGNKEYS } = require('sequelize/lib/query-types');
 
 const OpcoesProduto = sequelize.define('opcoesProduto', {

@@ -1,5 +1,6 @@
 const { Op } = require('sequelize');
 const app = require("../../app");
+const respostas = require('../../responses');
 const tabelaProdutos = require('../models/tabelasProdutos');
 const imagensProduto = require('../models/imagensProduto');
 const opcoesProduto = require('../models/opcoesProdutos');

@@ -8,7 +8,7 @@ async function getUserId(req,res){
     const id = req.params.id
     try {
         const usuario = await tabelaUsuarios.findByPk(id)
-        if(!usuario) return respostas.notFound(res,'Usario não encotrado')
+        if(!usuario) return respostas.notFound(res,'Usuário não encontrado')
         
         const showUser ={
             id: usuario.id,

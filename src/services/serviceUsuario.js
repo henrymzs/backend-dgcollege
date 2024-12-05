@@ -25,67 +25,45 @@ async function getUserId(req,res){
     }   
 }
 
-const postUser = async (req,res)=>{
-    const {firstname,surname,email,password} = req.body
-    if (!firstname || !surname || !email || !password) {
-        return respostas.badRequest(res, 'os campos são obrigatórios');
-      }
-    try {
-         const usuarioExite = await tabelaUsuarios.findOne({ where: { email: email } });
-         if (usuarioExite) {
-             return respostas.badRequest(res , 'Email,já exite');
-         }
-
-        const salt =await bcrypt.genSalt(10)
-        const hashedSenha = await bcrypt.hash(password,salt)
-        
-        const novoUsuario = await tabelaUsuarios.create({
-            firstname: firstname ,
-            surname:surname ,
-            email: email,
-            password: hashedSenha})
-
-            if(!novoUsuario){
-                 return respostas.badRequest(res, 'Erro ao criar usuário')
-            }
-            const exibeUsuario = {
-                firstname: novoUsuario.firstname,
-                surname: novoUsuario.surname,
-                email: novoUsuario.email,
-            }
-            respostas.created(res,'usuario criando com sucesso', exibeUsuario)
-        }catch(error){
-            respostas.InternalServerError(res,'Ocorreu um erro na criação do usuario')
-        }
-}
-
-
-const putUser = async(req,res)=>{ 
-    const id = req.params.id
-    const {firstname,surname,email} = req.body
-    if (!firstname && !surname && !email) {
-        return respostas.badRequest(res, 'todos os campos não podem esta vazio');
-      }
-
-    const usuario = await tabelaUsuarios.findByPk(id)
-    if(!usuario) return respostas.notFound(res,'Usario não encotrado')
-      
-    try {
-        
-        
-        const AttUsuario = await tabelaUsuarios.update({
-            firstname: firstname ,
-            surname: surname,
-            email: email
-        },
-        {where:{id:id}}
-    )
-    respostas.noContent(res)
+const postUser = async (req, res) => {
+    const {id, firstname, surname, email, password } = req.body;
     
-    }catch(error){
-        respostas.InternalServerError(res,'Ocorreu um na atulização das informações do usuario')
+    if (!id || !firstname || !surname || !email || !password) {
+        return respostas.badRequest(res, 'O campos são obrigatórios');
     }
-}
+
+    try {
+        const usuarioExiste = await tabelaUsuarios.findOne({ where: { email } });
+        if (usuarioExiste) {
+            return respostas.badRequest(res, 'Email já existe');
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedSenha = await bcrypt.hash(password, salt);
+
+        const novoUsuario = await tabelaUsuarios.create({
+            id,
+            firstname,
+            surname,
+            email,
+            password: hashedSenha
+        });
+
+        if (!novoUsuario) {
+            return respostas.badRequest(res, 'Erro ao criar usuário');
+        }
+
+        const exibeUsuario = {
+            firstname: novoUsuario.firstname,
+            surname: novoUsuario.surname,
+            email: novoUsuario.email,
+        };
+
+        respostas.created(res, 'Usuário criado com sucesso', exibeUsuario);
+    } catch (error) {
+        respostas.badRequest(res, 'Ocorreu um erro na criação do usuário');
+    }
+};
 
 
 const deleteUser = async (req,res)=>{
@@ -97,7 +75,7 @@ const deleteUser = async (req,res)=>{
             respostas.noContent(res)
 
         }catch(error){
-            respostas.InternalServerError(res,'Ocorreu um errona remoção do usuario usuario') 
+            respostas.InternalServerError(res,'Ocorreu um erro na remoção do usuario usuario') 
         }
 }
 
